@@ -10,6 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements IUserService {
     @Autowired
@@ -22,6 +24,21 @@ public class UserServiceImpl implements IUserService {
         Pageable page=PageRequest.of(currentPage,5,s);
         Page<User> p = dao.findAll(page);
         return p;
+    }
+
+    @Override
+    public void del(int id) {
+        dao.deleteById(id);
+    }
+
+    @Override
+    public User getById(int id) {
+        return dao.findById(id).get();
+    }
+
+    @Override
+    public void update(User user) {
+        dao.save(user);
     }
 
     @Override

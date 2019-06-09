@@ -25,9 +25,30 @@ public class UserController {
     public String toIndex(){
         return "redirect:/index.html";
     }
+    @RequestMapping("toAdd")
+    public String toAdd(){
+        return "redirect:/add.html";
+    }
+
     @RequestMapping("add")
     public String add(User user){
         userService.add(user);
-        return "redirct:/user/page/1";
+        return "redirect:/user/page/1";
+    }
+    @RequestMapping("del/{id}")
+    public String del(@PathVariable int id){
+        userService.del(id);
+        return "redirect:/user/page/1";
+    }
+    @RequestMapping("toUpdate/{id}")
+    public String toUpdate(@PathVariable int id ,ModelMap map){
+        User user=userService.getById(id);
+        map.put("user",user);
+        return "/update.html";
+    }
+    @RequestMapping("update")
+    public String update(@PathVariable User user){
+        userService.update(user);
+        return "redirect:/user/page/1";
     }
 }

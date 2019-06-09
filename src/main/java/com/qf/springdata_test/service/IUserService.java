@@ -7,4 +7,10 @@ public interface IUserService {
     Page getPage(int currentPage);
 
     void add(User user);
+
+    void del(int id);
+
+    User getById(int id);
+
+    void update(User user);
 }
