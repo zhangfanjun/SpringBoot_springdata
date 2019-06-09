@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <table border="1px" cellpadding="5px">
+            <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>密码</th>
+                <th>日期</th>
+                <th>操作</th>
+            </tr>
+            <tr th:each="p:${page.content}">
+                <th th:text="${p.id}">编号</th>
+                <th th:text="${p.name}">姓名</th>
+                <th th:text="${p.password}">密码</th>
+                <th th:text="${p.date}">日期</th>
+                <th>
+                    <a href="user/page/1" th:href="|/user/del/${p.id}|">删除</a>|
+                    <a href="user/page/1" th:href="|/user/toUpdate/${p.id}|">修改</a>
+                </th>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <a href="/user/toAdd">添加</a>|
+                    <a href="/user/index">返回首页</a>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <a href="/user/page/1">首页</a>
+                    <a th:if="${page.number>0}" th:href="|/user/page/${page.number}|">上一页</a>|
+                    <a th:if="${page.number<(page.totalPages-2)}" th:href="|/user/page/${page.number+2}|">下一页</a>|
+                    <a href="user/index" th:href="|/user/page/${page.totalPages}|">尾页</a>
+                </td>
+            </tr>
+        </table>
+</body>
+</html>
+</html>
