@@ -27,7 +27,7 @@ public class UserController {
     }
     @RequestMapping("toAdd")
     public String toAdd(){
-        return "redirect:/add.html";
+        return "/add";
     }
 
     @RequestMapping("add")
@@ -44,7 +44,7 @@ public class UserController {
     public String toUpdate(@PathVariable int id ,ModelMap map){
         User user=userService.getById(id);
         map.put("user",user);
-        return "/update.html";
+        return "/update";
     }
     @RequestMapping("update")
     public String update(@PathVariable User user){
